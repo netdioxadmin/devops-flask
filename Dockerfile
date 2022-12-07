@@ -14,7 +14,7 @@ COPY .  .
 
 RUN apk update & apk add python3 py3-pip --no-cache
 
-RUN pip3 install -r requirelent.txt
+RUN pip3 install -r requirement.txt
 
 RUN chown -R flaskapp:flaskapp $WORKDIR
 
