@@ -10,7 +10,7 @@ RUN adduser -h $WORKDIR -s /bin/sh -D $USER_NAME
 
 WORKDIR $WORKDIR
 
-COPY ./flask-app .
+COPY .  .
 
 RUN apk update & apk add python3 py3.pip --no-cache
 
