@@ -1,17 +1,27 @@
-FROM alpine:3.8
+FROM alpine:latest
 
-RUN mkdir /var/flaskapp
+ENV USER_NAME flaskapp
 
-WORKDIR /var/flaskapp
+ENV WORKDIR /var/flaskapp/
 
-COPY .  .
+RUN mkdir $WORKDIR
 
-RUN apk update
+RUN adduser -h $WORKDIR -s /bin/sh -D $USER_NAME
 
-RUN apk add python3
+WORKDIR $WORKDIR
 
-RUN pip3 install -r requirement.txt
+COPY ./flask-app .
 
-EXPOSE 5000 
+RUN apk update & apk add python3 py3.pip --no-cache
 
-CMD ["python3","app.py"]
+RUN pip3 install -r requirelent.txt
+
+RUN chown -R flaskapp:flaskapp $WORKDIR
+
+USER flaskapp
+
+EXPOSE 5000
+
+ENTRYPOINT ["python3"]
+
+CMD ["app.py"]
