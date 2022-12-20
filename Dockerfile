@@ -12,7 +12,7 @@ WORKDIR $WORKDIR
 
 COPY .  .
 
-RUN apk update & apk add python3
+RUN apk add python3
 
 RUN pip3 install -r requirement.txt
 
